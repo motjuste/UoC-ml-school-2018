@@ -29,9 +29,10 @@ internally.
 For comparison, here is TF-Slim's VGG definition:
 https://github.com/tensorflow/models/blob/master/research/slim/nets/vgg.py
 """
+from __future__ import print_function, absolute_import
 
 import tensorflow as tf
-import vggish_params as params
+from . import vggish_params as params
 
 slim = tf.contrib.slim
 

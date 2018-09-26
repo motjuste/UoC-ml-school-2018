@@ -43,16 +43,16 @@ Usage:
                                 --checkpoint /path/to/model/checkpoint
 """
 
-from __future__ import print_function
+from __future__ import print_function, absolute_import
 
 from random import shuffle
 
 import numpy as np
 import tensorflow as tf
 
-import vggish_input
-import vggish_params
-import vggish_slim
+from . import vggish_input
+from . import vggish_params
+from . import vggish_slim
 
 flags = tf.app.flags
 slim = tf.contrib.slim

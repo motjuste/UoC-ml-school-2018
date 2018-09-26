@@ -14,10 +14,11 @@
 # ==============================================================================
 
 """Post-process embeddings from VGGish."""
+from __future__ import print_function, absolute_import
 
 import numpy as np
 
-import vggish_params
+from . import vggish_params
 
 
 class Postprocessor(object):

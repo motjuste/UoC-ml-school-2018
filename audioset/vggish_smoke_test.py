@@ -29,21 +29,23 @@ Usage:
   $ python vggish_smoke_test.py
 """
 
-from __future__ import print_function
+from __future__ import print_function, absolute_import
 
+from pathlib import Path
 import numpy as np
 import tensorflow as tf
 
-import vggish_input
-import vggish_params
-import vggish_postprocess
-import vggish_slim
+from . import vggish_input
+from . import vggish_params
+from . import vggish_postprocess
+from . import vggish_slim
 
 print('\nTesting your install of VGGish\n')
 
 # Paths to downloaded VGGish files.
-checkpoint_path = 'vggish_model.ckpt'
-pca_params_path = 'vggish_pca_params.npz'
+vggish_root = Path.cwd().joinpath("data", "models", "vggish")
+checkpoint_path = str(vggish_root.joinpath('vggish_model.ckpt'))
+pca_params_path = str(vggish_root.joinpath('vggish_pca_params.npz'))
 
 # Relative tolerance of errors in mean and standard deviation of embeddings.
 rel_error = 0.1  # Up to 10%
