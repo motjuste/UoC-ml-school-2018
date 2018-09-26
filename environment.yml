@@ -1,0 +1,15 @@
+name: ml-school
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python==3.6.*
+  - jupyter==1.0.*
+  - nb_conda
+  - nb_conda_kernels
+  - cython==0.28.*
+  - numpy==1.14.*
+  - matplotlib==2.2.*
+  - librosa==0.6.*
+  - pip:
+    - tensorflow==1.10.*

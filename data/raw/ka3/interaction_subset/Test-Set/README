@@ -1,0 +1,6 @@
+@mgref 2017-12-08:
+This folder contains the wav files used in the Kaldi testset for the interaction scenario. The files are transformed to mono 16 kHz files using sox.
+
+Attention: DEU_pear_Inka.wav is not used in the testset because I couldn't find the right eaf file. 18 eaf file in 
+/nm-raid/projekte/2_Laufend/ka3/4_Umsetzung/Daten/audio/Interaction/Ref_ELAN
+were used. Not in the "deutsch" subfolder...
