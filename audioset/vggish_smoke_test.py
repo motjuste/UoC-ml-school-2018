@@ -44,8 +44,8 @@ print('\nTesting your install of VGGish\n')
 
 # Paths to downloaded VGGish files.
 vggish_root = Path.cwd().joinpath("data", "models", "vggish")
-checkpoint_path = str(vggish_root.joinpath('vggish_model.ckpt'))
-pca_params_path = str(vggish_root.joinpath('vggish_pca_params.npz'))
+checkpoint_path = str(vggish_root.joinpath('vggish_model.ckpt').absolute())
+pca_params_path = str(vggish_root.joinpath('vggish_pca_params.npz').absolute())
 
 # Relative tolerance of errors in mean and standard deviation of embeddings.
 rel_error = 0.1  # Up to 10%
