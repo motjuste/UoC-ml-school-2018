@@ -44,7 +44,7 @@ class AudioLabelPair:
 
         labels = self._get_label_examples()
 
-        empty_embedding = post_processor.postprocess(np.zeros(embedding.shape[1:])[None, ...])
+        empty_embedding = post_processor.postprocess(np.zeros(embedding.shape[1:])[None, ...])[0, ...]
         empty_label = np.zeros(labels.shape[1:])
 
         return self._to_SequenceExample(embedding, labels, empty_embedding, empty_label)
