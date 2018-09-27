@@ -1,0 +1,3 @@
+[submodule "rennet"]
+	path = rennet
+	url = git@github.com:fraunhofer-iais/rennet.git
