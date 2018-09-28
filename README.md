@@ -22,7 +22,7 @@ git clone --recurse-submodules https://github.com/motjuste/UoC-ml-school-2018
 cd UoC-ml-school-2018
 ```
 
-Install the required packages using `conda` (Terminal on Linux/macOS, or Anaconda Prompt on Windows):
+Install the required packages using `conda` (Terminal on Linux/macOS, or **Anaconda Prompt** on Windows):
 ```bash
 # change directory to the clone, if not already
 # replace ~ below with where you clones this repository
@@ -38,7 +38,7 @@ conda env create --file environment.yml
 conda activate ml-school
 ```
 
-Start `jupyter notebook` (Terminal on Linux/macOS, or Anaconda Prompt on Windows):
+Start `jupyter notebook` (Terminal on Linux/macOS, or **Anaconda Prompt** on Windows):
 ```bash
 # change directory to the clone, if not already
 # replace ~ below with where you clones this repository
