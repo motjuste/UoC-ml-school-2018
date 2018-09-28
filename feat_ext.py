@@ -21,8 +21,8 @@ class AudioLabelPair:
     }
 
     sequence_features = {
-        "embedding": Feat(tf.FixedLenSequenceFeature([], dtype=tf.float32), lambda f, v: f.float_list.value.extend(v)),
-        "speechact": Feat(tf.FixedLenSequenceFeature([], dtype=tf.float32), lambda f, v: f.float_list.value.extend(v)),
+        "embedding": Feat(tf.FixedLenSequenceFeature([], dtype=tf.float32), lambda f, v: f.float_list.value.append(v)),
+        "speechact": Feat(tf.FixedLenSequenceFeature([], dtype=tf.float32), lambda f, v: f.float_list.value.append(v)),
     }
 
     def __init__(self, path_to_audio, path_to_label, labels_parser=ActiveSpeakers.from_file):
