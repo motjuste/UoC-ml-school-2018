@@ -8,8 +8,9 @@ dependencies:
   - nb_conda
   - nb_conda_kernels
   - cython==0.28.*
-  - numpy==1.14.*
+  - numpy<=1.14.5
   - matplotlib==2.2.*
   - librosa==0.6.*
   - pip:
     - tensorflow==1.10.*
+    - ./rennet[analysis,test]
