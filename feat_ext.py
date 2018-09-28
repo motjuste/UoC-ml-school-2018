@@ -1,5 +1,5 @@
 from pathlib import Path
-from itertools import starmap, repeat, zip_longest
+from itertools import chain, starmap, repeat, zip_longest
 from collections import namedtuple
 import tensorflow as tf
 import numpy as np
@@ -76,9 +76,18 @@ class AudioLabelPair:
 
     def _to_SequenceExample(self, embedding, labels, empty_embedding, empty_label):
         ex = tf.train.SequenceExample()
-        AudioLabelPair.context_features['filename'].fn(ex.context.feature['filename'], bytes(Path(self.audio.filepath).name.split(".")[0], 'utf'))
-        AudioLabelPair.context_features['length'].fn(ex.context.feature['length'], max(len(embedding), len(labels)))
-        AudioLabelPair.context_features['dims'].fn(ex.context.feature['dims'], embedding.shape[1])
+        AudioLabelPair.context_features['filename'].fn(
+            ex.context.feature['filename'], 
+            bytes(Path(self.audio.filepath).name.split(".")[0], 'utf')
+        )
+        AudioLabelPair.context_features['length'].fn(
+            ex.context.feature['length'], 
+            max(len(embedding), len(labels))
+        )
+        AudioLabelPair.context_features['dims'].fn(
+            ex.context.feature['dims'], 
+            embedding.shape[1]
+        )
 
         embedding_flist = ex.feature_lists.feature_list['embedding'].feature.add()
         speechact_flist = ex.feature_lists.feature_list['speechact'].feature.add()
@@ -92,16 +101,26 @@ class AudioLabelPair:
 
         return ex
 
-
     @classmethod
-    def all_in_dir(cls, path_to_dir, audio_filename_pattern, label_filename_pattern, labels_parser=ActiveSpeakers.from_file):
+    def all_in_dir(cls, 
+                   path_to_dir, 
+                   audio_filename_pattern, 
+                   label_filename_pattern, 
+                   labels_parser=ActiveSpeakers.from_file):
+        
         if not isinstance(path_to_dir, Path):
             path_to_dir = Path(path_to_dir)
 
+        if isinstance(audio_filename_pattern, str):
+            audio_filename_pattern = [audio_filename_pattern]
+
+        if isinstance(label_filename_pattern, str):
+            label_filename_pattern = [label_filename_pattern]
+
         assert path_to_dir.is_dir(), f'path_to_dir at: {path_to_dir} is not a valid directory'
 
-        audio_files = sorted(path_to_dir.glob(audio_filename_pattern))
-        label_files = sorted(path_to_dir.glob(label_filename_pattern))
+        audio_files = sorted(chain(*map(path_to_dir.glob, audio_filename_pattern)))
+        label_files = sorted(chain(*map(path_to_dir.glob, label_filename_pattern)))
 
         assert len(audio_files) == len(label_files),\
             f"Mismatch in number of audio files found vs. label files: {len(audio_files)} vs. {len(label_files)}"
