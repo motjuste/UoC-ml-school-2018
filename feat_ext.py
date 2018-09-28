@@ -21,8 +21,8 @@ class AudioLabelPair:
     }
 
     sequence_features = {
-        "embedding": Feat(tf.FixedLenSequenceFeature([], dtype=tf.float32), lambda f, v: f.float_list.value.append(v)),
-        "speechact": Feat(tf.FixedLenSequenceFeature([], dtype=tf.float32), lambda f, v: f.float_list.value.append(v)),
+        "embedding": Feat(tf.FixedLenSequenceFeature([128], dtype=tf.float32), lambda f, v: f.float_list.value.extend(v)),
+        "speechact": Feat(tf.FixedLenSequenceFeature([2], dtype=tf.float32), lambda f, v: f.float_list.value.extend(v)),
     }
 
     def __init__(self, path_to_audio, path_to_label, labels_parser=ActiveSpeakers.from_file):
@@ -89,15 +89,15 @@ class AudioLabelPair:
             embedding.shape[1]
         )
 
-        embedding_flist = ex.feature_lists.feature_list['embedding'].feature.add()
-        speechact_flist = ex.feature_lists.feature_list['speechact'].feature.add()
+        embedding_flist = ex.feature_lists.feature_list['embedding']
+        speechact_flist = ex.feature_lists.feature_list['speechact']
 
         embedding_fn = AudioLabelPair.sequence_features['embedding'].fn
         speechact_fn = AudioLabelPair.sequence_features['speechact'].fn
 
         for (e, l) in zip_longest(embedding, labels):
-            embedding_fn(embedding_flist, e if e is not None else empty_embedding)
-            speechact_fn(speechact_flist, l if l is not None else empty_label)
+            embedding_fn(embedding_flist.feature.add(), e if e is not None else empty_embedding)
+            speechact_fn(speechact_flist.feature.add(), l if l is not None else empty_label)
 
         return ex
 
