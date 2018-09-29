@@ -62,8 +62,8 @@ x = np.sin(2 * np.pi * freq * t)
 input_batch = vggish_input.waveform_to_examples(x, sr)
 print('Log Mel Spectrogram example: ', input_batch[0])
 np.testing.assert_equal(
-    input_batch.shape,
-    [num_secs, vggish_params.NUM_FRAMES, vggish_params.NUM_BANDS])
+    input_batch.shape[1:],
+    [vggish_params.NUM_FRAMES, vggish_params.NUM_BANDS])
 
 # Define VGGish, load the checkpoint, and run the batch through the model to
 # produce embeddings.
