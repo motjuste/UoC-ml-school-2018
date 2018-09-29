@@ -1,9 +1,14 @@
-# A Practical Introduction to Automatic Audio Segmentation
+# A Practical Introduction to Automatic Audio Segmentation Using Deep Learning
 
 _In Proceedings of: [**Late Summer School: Machine Learning for Language Analysis - September, 2018**](http://ml-school.uni-koeln.de/index.html)_ 
 
+> **Goal**
+> 
+> Train a deep neural network on [VGGish](https://github.com/tensorflow/models/tree/master/research/audioset) audio features 
+> to automatically segment an audio file with speech into speech and non-speech parts. 
+
 ## Setup
-Please follow the instructions below in sequence.
+Please follow the instructions below in order.
 
 Install and setup the following:
 
